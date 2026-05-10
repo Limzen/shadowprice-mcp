@@ -1,0 +1,38 @@
+{
+  "name": "shadowprice",
+  "version": "1.0.0",
+  "description": "The official MCP Server for ShadowPrice. Inject leaked B2B SaaS pricing directly into Claude/Cursor.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "shadowprice": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "mcp",
+    "saas",
+    "pricing",
+    "negotiation",
+    "b2b"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "typescript": "^6.0.3"
+  }
+}
