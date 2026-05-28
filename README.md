@@ -2,7 +2,7 @@
 
 # ShadowPrice MCP Server
 
-**Inject leaked B2B SaaS pricing directly into Claude & Cursor.**
+**Inject real B2B SaaS pricing intel directly into Claude, Cursor, and any MCP-compatible AI Agent.**
 
 [![npm version](https://img.shields.io/npm/v/shadowprice.svg?style=flat-square&color=cb3837)](https://www.npmjs.com/package/shadowprice)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
@@ -13,7 +13,7 @@
 
 ## What is ShadowPrice?
 
-ShadowPrice connects your AI assistant — Claude Desktop or Cursor — to a curated database of **leaked B2B SaaS contracts**, historical discount data, and negotiation playbooks.
+ShadowPrice connects your AI assistant — Claude, Cursor, or any MCP-compatible LLM — to a curated database of **leaked B2B SaaS contracts**, historical discount data, and negotiation playbooks.
 
 Ask a simple question like _"How much should I pay for HubSpot Enterprise?"_ and get back real pricing benchmarks sourced from actual contracts — not vendor list prices.
 
@@ -22,7 +22,7 @@ Ask a simple question like _"How much should I pay for HubSpot Enterprise?"_ and
 - 🔍 **Contract Pricing Intelligence** — Access leaked pricing from real SaaS deals.
 - 📉 **Historical Discount Data** — See what discounts others have negotiated over time.
 - 🤝 **Negotiation Tactics** — AI-generated strategies tailored to each vendor.
-- ⚡ **Zero Setup** — Runs instantly via `npx`. No cloning, no building.
+- ⚡ **Zero Setup** — Runs instantly via `npx -y shadowprice`. No cloning, no building.
 
 ---
 
@@ -30,8 +30,10 @@ Ask a simple question like _"How much should I pay for HubSpot Enterprise?"_ and
 
 ### Prerequisites
 
-- [Claude Desktop](https://claude.ai/download) or [Cursor](https://cursor.com) installed.
+- Claude Desktop, Cursor, or any MCP-compatible client installed.
 - A ShadowPrice API key — get yours at **[shadowprice.dev](https://shadowprice.dev)**.
+
+---
 
 ### Connect to Claude Desktop
 
@@ -65,9 +67,60 @@ Save the file, then **quit and reopen** Claude Desktop. The ShadowPrice tools wi
 
 ---
 
+### Connect to Cursor IDE
+
+1. Open **Cursor Settings** → **Features** → **MCP**.
+2. Click **"+ Add New MCP Server"**.
+3. Fill in the fields:
+   - **Type:** `command`
+   - **Name:** `ShadowPrice`
+   - **Command:** `npx -y shadowprice`
+4. Add your API key as an environment variable:
+
+```json
+{
+  "SHADOWPRICE_API_KEY": "your_api_key_here"
+}
+```
+
+> [!IMPORTANT]
+> Replace `your_api_key_here` with the API key from your [shadowprice.dev](https://shadowprice.dev) dashboard.
+
+Save the settings and restart Cursor. ShadowPrice will be available to your AI in Cursor.
+
+---
+
+### Universal MCP Clients
+
+ShadowPrice works with **any MCP-compatible client** — including LangChain, Dify, Flowise, and others. Configure your client to use the `command` transport type with the following settings:
+
+| Field       | Value                                     |
+| ----------- | ----------------------------------------- |
+| **Type**    | `command`                                 |
+| **Command** | `npx`                                     |
+| **Args**    | `["-y", "shadowprice"]`                   |
+| **Env**     | `SHADOWPRICE_API_KEY=your_api_key_here`   |
+
+Most clients accept this as a JSON block:
+
+```json
+{
+  "command": "npx",
+  "args": ["-y", "shadowprice"],
+  "env": {
+    "SHADOWPRICE_API_KEY": "your_api_key_here"
+  }
+}
+```
+
+> [!TIP]
+> Pass `SHADOWPRICE_API_KEY` via your client's environment variable configuration to keep your key secure and out of version control.
+
+---
+
 ## Usage
 
-Once connected, just ask Claude naturally:
+Once connected, just ask your AI naturally:
 
 | Prompt                                                           | What you get                                     |
 | ---------------------------------------------------------------- | ------------------------------------------------ |
