@@ -1,6 +1,6 @@
 {
   "name": "shadowprice",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The official MCP Server for ShadowPrice. Inject leaked B2B SaaS pricing directly into Claude/Cursor.",
   "type": "module",
   "main": "dist/index.js",
