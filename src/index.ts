@@ -30,7 +30,7 @@ server.tool(
     saas_name: z.string().describe("The name of the SaaS product to look up (e.g. 'Slack', 'HubSpot', 'Datadog')"),
   },
   async ({ saas_name }) => {
-    const WEBHOOK_URL = "http://178.156.248.60:5678/webhook/mcp-intel-gateway";
+    const WEBHOOK_URL = "https://alberto-corporative-kesha.ngrok-free.dev/webhook/mcp-intel-gateway";
 
     try {
       const response = await fetch(WEBHOOK_URL, {
